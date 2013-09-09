@@ -18,7 +18,7 @@ class CreateUsers < ActiveRecord::Migration
 				t.timestamps
 			end
 
-			add_index :users, :login, :unique => true
+			add_index :users, :unique => true
 			add_index :users, :reset_password_token, :unique => true
 
 		end
