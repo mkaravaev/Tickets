@@ -6,4 +6,7 @@ class Event < ActiveRecord::Base
 						:scheduled_at_date, 
 						:scheduled_at_time, presence: true 				
 
+	belongs_to :place
+	has_many	 :tickets
+
 end

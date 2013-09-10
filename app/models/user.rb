@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
 														   uniqueness: { case_sensitive: false }
 	validates :encrypted_password, presence: true, 
 																 	 length: { minimum: 5 }
+ 	has_many :tickets, through: :event
+
 end

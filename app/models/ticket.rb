@@ -5,5 +5,7 @@ class Ticket < ActiveRecord::Base
 						:event_id, 
 						:status, 
 						:used, 	 presence: true,
+	
+	belongs_to :event
 
 end
