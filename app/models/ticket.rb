@@ -1,6 +1,6 @@
 class Ticket < ActiveRecord::Base
 
-	validates :number, presence: true, numericality: true
+	validates :number, presence: true, numericality: true, uniqueness: true
 	validates :user_id, 
 						:event_id, 
 						:status, 
