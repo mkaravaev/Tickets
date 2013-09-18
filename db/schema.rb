@@ -39,11 +39,13 @@ ActiveRecord::Schema.define(version: 20130909060018) do
   end
 
   create_table "tickets", force: true do |t|
-    t.string   "number",     null: false
+    t.string   "number",                     null: false
     t.integer  "user_id"
     t.integer  "event_id"
     t.integer  "status"
-    t.boolean  "used"
+    t.boolean  "used",       default: false
+    t.integer  "row"
+    t.integer  "seat"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -5,7 +5,9 @@ class CreateTickets < ActiveRecord::Migration
     	t.integer :user_id
     	t.integer :event_id
     	t.integer :status
-    	t.boolean	:used
+    	t.boolean	:used, default: false
+      t.integer :row
+      t.integer :seat
       t.timestamps
     end
 
