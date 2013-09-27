@@ -5,8 +5,10 @@ gem 'rails', '4.0.0'
 gem 'thin'
 gem 'pg'
 gem 'devise'
-#gem 'protected_attributes'
+gem 'carrierwave'
+
 # Use SCSS for stylesheets
+
 gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'
 
