@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   #before_save { self.email = email.downcase }
 
- 	has_many :tickets, through: :event
+ 	has_many :tickets
+
 
 end
