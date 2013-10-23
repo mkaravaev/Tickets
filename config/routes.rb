@@ -1,7 +1,9 @@
 Tickets::Application.routes.draw do
 
   resources :events
-  resources :tickets
+  resources :tickets do 
+    post :mark_as_used, on: :member
+  end
   devise_for :users
 
   # The priority is based upon order of creation: first created -> highest priority.

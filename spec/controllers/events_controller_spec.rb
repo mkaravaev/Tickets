@@ -4,7 +4,7 @@ describe EventsController do
 
 	describe "index action" do
 		it "renders all events" do
-			event = FactoryGirl.create(:event)
+			event = create(:event)
 			get :index
 			expect(assigns(:events)).to eq([event])
 		end
@@ -12,7 +12,7 @@ describe EventsController do
 
 	describe "show action" do 
 		it "renders event page" do
-			event = FactoryGirl.create(:event)
+			event = create(:event)
 			get :show, { id: event.id } 
 			expect(response).to render_template("show")
 		end 
@@ -25,7 +25,7 @@ describe EventsController do
 
 	describe "new action" do 
 		it "renders new event page" do
-			get :new, {event: {
+			get :new, { event: {
 					 title: "Filip Kirkorov concert",
 					 description: "DryGOY show", 
 					 place_id: "2",
@@ -57,14 +57,13 @@ describe EventsController do
 
 	describe "update action" do 
 		it "updates event attributes" do
-			pending("add id: event: id to patch")
 			event = create(:event)
-			event.update_attributes(title: "Alla Pugacheva",
-															description: "Hello World")
-			patch :update, event: {title: event.title,
-															description: event.description
-															} #, id: event.id
-			expect(response).to eq([event])
+			attr = Hash.new
+			attr = { title: "Alla Pugacheva", description: "Hello World" }
+			patch :update, id: event.id, event: { title: attr[:title], description: attr[:description] }
+			event.reload
+			event.title.should eq(attr[:title])
+			event.description.should eq(attr[:description])
 		end
 	end
 
@@ -83,7 +82,7 @@ describe EventsController do
 	describe "destroy action" do 
 		it "destroys event" do
 			event = create(:event)
-			delete :destroy, {id: event.id}
+			delete :destroy, id: event.id
 			expect(response).to redirect_to(events_path)
 		end
 	end

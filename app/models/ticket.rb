@@ -6,7 +6,7 @@ class Ticket < ActiveRecord::Base
 
 	validates :number, presence: true, uniqueness: true
 	validates :seat, uniqueness: { scope: :row }
-	validates :user_id, :event_id, :status, presence: true
+	validates :user_id, :event_id, presence: true
 
 	belongs_to :event
 	belongs_to :user
@@ -16,15 +16,15 @@ class Ticket < ActiveRecord::Base
 		ticket = Ticket.where("number LIKE '#{n}%'")	
 	end
 
+	def use_ticket!
+		self.update_attribute(:used, true) unless self.used 
+	end
+
 	
 	private
 
 		def generate_number
 			write_attribute(:number, Digest::MD5.hexdigest("#{seat} #{row} #{Time.now}"))
-		end
-
-		def use_ticket
-			update_attribute(:used, "true") if self.used = "false"
 		end
 
 end

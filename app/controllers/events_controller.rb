@@ -29,7 +29,6 @@ class EventsController < ApplicationController
 	end
 
 	def edit #/events/1/edit/ GET
-
 	end
 
 	def update #/events/1/ PATCH
