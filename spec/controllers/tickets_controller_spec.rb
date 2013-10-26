@@ -9,7 +9,6 @@ describe TicketsController do
 	describe "index action" do 
 
 		it "shows all user tickets, if user is not admin" do
-			sign_in @user
 			tickets = create_list(:ticket, 4, user: @user)
 			wrong_tickets = create_list(:ticket, 2)
 			get :index
@@ -18,7 +17,6 @@ describe TicketsController do
 		end
 
 		it "shows 403 page if user doesn't login" do
-
 			tickets = create_list(:ticket, 4, user: @user)
 			wrong_tickets = create_list(:ticket, 2)
 			get :index
@@ -26,7 +24,6 @@ describe TicketsController do
 		end
 		
 		it "shows all tickets of all users, if user is admin" do
-			sign_in @user
 			@user.toggle!(:admin)
 			tickets = create_list(:ticket, 4, user: @user)
 			all_tickets = @user.tickets.to_a

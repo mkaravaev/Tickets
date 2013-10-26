@@ -1,0 +1,20 @@
+%div 
+	%p 
+		%strong Welcome!
+	%div
+		- @tickets.each do |ticket|
+			%table
+				%tr
+					%td
+						%strong
+						= link_to "#{ticket.event.title}", event_path(ticket.event_id) if ticket.event
+				%tr
+					%td Your row: #{ticket.row}
+				%tr
+					%td Your seat: #{ticket.seat}
+				%tr 	
+					%td Your unique number: #{ticket.number}
+			 
+			= link_to "Show me ticket", ticket_path(ticket)
+
+	%p= link_to '+ buy another ticket', new_ticket_path

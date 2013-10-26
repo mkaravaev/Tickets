@@ -13,7 +13,7 @@ class EventsController < ApplicationController
 	end
 
 	def new #/events/new GET
-		@event = Event.new(event_params)
+		@event = Event.new
 		unless @event.errors.empty?
 			@event.save
 		end

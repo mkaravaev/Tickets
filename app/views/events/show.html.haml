@@ -1,0 +1,16 @@
+%div
+	%p= @event.title 
+	%p= @event.description
+	%p starts at #{@event.scheduled_at_time} on #{ @event.scheduled_at_date}
+	-if current_user.admin
+		%p Tickets bought: #{@event.tickets.count}
+	-else
+		%p= link_to 'Buy ticket', new_ticket_path(event_id: @event.id)
+	%p= link_to 'Back to events', events_path
+
+	%div 
+		= simple_form_for @event.tickets.build do |t|
+			= t.input :row,  as: :select, collection: (1..17).to_a
+			=	t.input :seat, as: :select, collection: (1..30).to_a
+			= t.input :event_id, as: :hidden
+			= t.submit "Buy it!"

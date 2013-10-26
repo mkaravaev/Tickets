@@ -1,0 +1,11 @@
+%div
+	%div 
+		- if @ticket.event
+			%h1 This is your ticket to #{@ticket.event.title} 
+		%h2 Row: #{@ticket.row} / Seat: #{@ticket.seat}
+		%h2 nubmer: #{@ticket.number}
+	%div 
+		= link_to "Back to tickets", tickets_path
+		= link_to "Make refund", tickets_path
+		= button_to "Use ticket", { action: "mark_as_used", id: @ticket.id }, method: :post
+	

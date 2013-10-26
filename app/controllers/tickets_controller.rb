@@ -19,7 +19,7 @@ class TicketsController < ApplicationController
 	end
 
 	def new
-		@ticket = Ticket.new(ticket_params)
+		@ticket = Ticket.new
 	end
 
 	def mark_as_used
@@ -29,6 +29,7 @@ class TicketsController < ApplicationController
 
 	def create
 		@ticket = Ticket.create({user_id: current_user.id}.merge(ticket_params))
+		p @ticket.errors
 		if @ticket.errors.empty?
 			redirect_to @ticket
 		else
@@ -46,7 +47,7 @@ class TicketsController < ApplicationController
 	private
 
 		def find_ticket
-			@ticket = Ticket.where(id: params[:id]).first
+			@ticket = Ticket.where(id: params[:id]).includes(:event).first
 		end
 	
 		def ticket_params

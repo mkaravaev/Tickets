@@ -1,0 +1,19 @@
+%div 	
+	- @events.each do |event|
+		%table{border: "1"}
+			%tr
+				%td= link_to event.title, event_path(event.id)
+			%tr	
+				%td= event.description
+			- if current_user && current_user.admin
+				%tr
+					%td
+						= link_to 'Edit', edit_event_path(event.id)
+						= link_to '- Delete event', event_path(event.id), method: :delete, data: { confirm:"Are you shure?" }
+			- else
+				%tr 
+					%td= link_to 'Buy ticket to event', new_ticket_path(event_id: event.id)
+%div 
+	- if current_user && current_user.admin				
+		= link_to '+ Add event', new_event_path
+

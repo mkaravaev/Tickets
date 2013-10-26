@@ -1,0 +1,8 @@
+%header 
+	%div.logo
+		= link_to "Sochi Tickets.com", events_path
+		%nav
+			- if current_user
+				%ul 
+					%li You signed in as #{current_user.email}
+					%li= link_to "Sign out", destroy_user_session_path, method: :delete 

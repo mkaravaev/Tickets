@@ -6,6 +6,7 @@ gem 'thin'
 gem 'pg'
 gem 'devise'
 gem 'carrierwave'
+gem 'simple_form'
 
 # Use SCSS for stylesheets
 

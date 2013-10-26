@@ -1,0 +1,6 @@
+%div 
+	%div 
+		= simple_form_for @ticket do |t|
+			= t.input :row,  as: :select, collection: (1..17).to_a
+			=	t.input :seat, as: :select, collection: (1..30).to_a
+			= t.submit "Buy it!"
