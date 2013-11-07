@@ -29,7 +29,6 @@ class TicketsController < ApplicationController
 
 	def create
 		@ticket = Ticket.create({user_id: current_user.id}.merge(ticket_params))
-		p @ticket.errors
 		if @ticket.errors.empty?
 			redirect_to @ticket
 		else

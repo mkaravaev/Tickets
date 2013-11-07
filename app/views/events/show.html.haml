@@ -1,8 +1,8 @@
-%div
+%div.container
 	%p= @event.title 
 	%p= @event.description
 	%p starts at #{@event.scheduled_at_time} on #{ @event.scheduled_at_date}
-	-if current_user.admin
+	-if current_user && current_user.admin
 		%p Tickets bought: #{@event.tickets.count}
 	-else
 		%p= link_to 'Buy ticket', new_ticket_path(event_id: @event.id)

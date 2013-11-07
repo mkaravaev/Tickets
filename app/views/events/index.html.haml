@@ -1,19 +1,19 @@
-%div 	
-	- @events.each do |event|
-		%table{border: "1"}
-			%tr
-				%td= link_to event.title, event_path(event.id)
-			%tr	
-				%td= event.description
-			- if current_user && current_user.admin
-				%tr
-					%td
-						= link_to 'Edit', edit_event_path(event.id)
-						= link_to '- Delete event', event_path(event.id), method: :delete, data: { confirm:"Are you shure?" }
-			- else
-				%tr 
-					%td= link_to 'Buy ticket to event', new_ticket_path(event_id: event.id)
-%div 
-	- if current_user && current_user.admin				
-		= link_to '+ Add event', new_event_path
+%div.container
+  %div.row
+    - @events.each do |event|
+      %div.col-sm-6.col-md-4
+        %div.thumbnail
+          %img{alt: "...", "data-src" => "holder.js/300x200"}/
+          %div.caption
+            %h3= link_to event.title, event_path(event.id)
+            %p= event.description
+            - if current_user && current_user.admin
+              %p
+                = link_to 'Edit', edit_event_path(event.id)
+                = link_to 'Delete', event_path(event.id), method: :delete, data: { confirm:"Are you shure?" }
+            - else
+              %p= link_to 'Buy ticket to event', new_ticket_path(event_id: event.id) 
+  - if current_user && current_user.admin       
+    %p= link_to '+ Add event', new_event_path
+
 

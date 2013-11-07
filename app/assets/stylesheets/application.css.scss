@@ -11,3 +11,20 @@
  *= require_self
  *= require_tree .
  */
+@import "bootstrap";
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.padding {
+  margin-bottom: 20px;
+}
+
+
+.admin {
+  color: red;
+}

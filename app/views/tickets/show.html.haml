@@ -7,5 +7,6 @@
 	%div 
 		= link_to "Back to tickets", tickets_path
 		= link_to "Make refund", tickets_path
-		= button_to "Use ticket", { action: "mark_as_used", id: @ticket.id }, method: :post
+		%div
+			%button.btn.btn-primary{type: "button"}=button_to "Use ticket", { action: "mark_as_used", id: @ticket.id }, method: :post
 	
