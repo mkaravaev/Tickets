@@ -1,13 +1,11 @@
-%div 
-	%p 
-		%strong Welcome!
+%div.container
 	%div
 		- @tickets.each do |ticket|
 			%table
 				%tr
 					%td
 						%strong
-						= link_to "#{ticket.event.title}", event_path(ticket.event_id) if ticket.event
+							= link_to "#{ticket.event.title}", event_path(ticket.event_id) if ticket.event
 				%tr
 					%td Your row: #{ticket.row}
 				%tr

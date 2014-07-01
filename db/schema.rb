@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131003140401) do
+ActiveRecord::Schema.define(version: 20131107085916) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,14 +20,12 @@ ActiveRecord::Schema.define(version: 20131003140401) do
     t.string   "title"
     t.text     "description"
     t.integer  "place_id"
-    t.date     "scheduled_at_date"
-    t.time     "scheduled_at_time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "scheduled_at_time"
   end
 
   add_index "events", ["place_id"], name: "index_events_on_place_id", using: :btree
-  add_index "events", ["scheduled_at_date"], name: "index_events_on_scheduled_at_date", using: :btree
 
   create_table "places", force: true do |t|
     t.string   "name"

@@ -7,7 +7,6 @@ describe TicketsController do
 	end
 
 	describe "index action" do 
-
 		it "shows all user tickets, if user is not admin" do
 			tickets = create_list(:ticket, 4, user: @user)
 			wrong_tickets = create_list(:ticket, 2)
@@ -48,11 +47,17 @@ describe TicketsController do
 	end
 
 	describe "mark_as_used action" do 
-		it "use ticket and redirect to index path" do
+		it "marks ticket as used and redirect to index path" do
 			ticket = create(:ticket)
 			post :mark_as_used, { id: ticket.id }
 			expect(ticket.reload.used).to eq(true)
 			expect(response).to redirect_to(tickets_path)
+		end
+
+		it "marks ticket as used and renders json status ok" do
+			ticket = create(:ticket)
+			post :mark_as_used, id: ticket.id, format: "json"
+			expect(JSON.parse(response.body)).to eq({ "status" => "ok" })
 		end
 	end
 

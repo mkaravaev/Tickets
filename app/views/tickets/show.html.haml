@@ -1,12 +1,19 @@
-%div
-	%div 
-		- if @ticket.event
-			%h1 This is your ticket to #{@ticket.event.title} 
-		%h2 Row: #{@ticket.row} / Seat: #{@ticket.seat}
-		%h2 nubmer: #{@ticket.number}
-	%div 
-		= link_to "Back to tickets", tickets_path
-		= link_to "Make refund", tickets_path
-		%div
-			%button.btn.btn-primary{type: "button"}=button_to "Use ticket", { action: "mark_as_used", id: @ticket.id }, method: :post
-	
+%div.container
+  %div.well 
+    %div
+      - if @ticket.event
+        %h1 Ticket to: #{@ticket.event.title}
+        %h3 Starts at: #{@ticket.event.scheduled_at_time.strftime("%d of %B at %R")} 
+        %h2
+          / %strong  #{@ticket.event.place.name} 
+        %h4 row: #{@ticket.row} / seat: #{@ticket.seat}
+      
+        %h4 number: #{@ticket.number}
+    %div
+      - if current_user.admin? && !@ticket.used
+        .btn.btn-success#use_ticket{ data: { ticket_id: @ticket.id }  } Use Ticket
+  %div 
+    = link_to "Back to tickets", tickets_path
+    - unless current_user.admin
+      = link_to "Make refund", tickets_path
+      

@@ -1,10 +1,10 @@
-%div 
+%div.container
 	%div 
 		= simple_form_for (@event) do |e| 
 			= e.input :title, label: "title of event, please"
 			= e.input :description, label: "description, please"
-			= e.date_field :scheduled_at_date, label: "Date:"
+			= e.date_field :scheduled_at_time, label: "Date:"
 			= e.time_field :scheduled_at_time, label: "Time:"
 			= e.input :place_id, label: "place_id"
-			= e.submit "Create ticket!"
+			= e.submit "Create ticket!", class: "btn btn-default"
 

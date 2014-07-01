@@ -10,7 +10,21 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require_tree .
 //= require bootstrap
+
+
+jQuery(function($) {
+  $('#use_ticket').click(function() {
+    var button = $(this);
+    $.ajax({
+      type: 'POST',
+      url: '/tickets/' + $(this).data('ticket-id') + '/mark_as_used',
+      dataType: 'json',
+      success: function(response) {
+        if(response.status == 'ok') {button.fadeOut(200);}
+      },
+      error: function(response){
+      }
+    }); 
+  });
+});

@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="border-form-div">
+    <h2>Sign in</h2>
+    <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <%= f.input :email, :required => false, :autofocus => true, class: "form-control", placeholder: "enter e-mail", label: false %>
+      <%= f.input :password, :required => false, class: "form-control", placeholder: "enter password", label: false %>
+      <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+      <%= f.button :submit, "Sign in", class: 'btn btn-primary' %>
+    <% end %>
+<div> 
+  <p><%= link_to 'Forget your password?', new_user_password_path %></p>
+</div>
+  </div>
+</div>

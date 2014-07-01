@@ -2,7 +2,6 @@ class TicketsController < ApplicationController
 
 	before_filter :authenticate_user!
 	before_filter :find_ticket, only: [:show, :mark_as_used, :destroy]
-
 	
 	def index
 		if current_user.admin?
@@ -19,19 +18,24 @@ class TicketsController < ApplicationController
 	end
 
 	def new
-		@ticket = Ticket.new
+		@ticket = Ticket.new(event_id: params[:event_id]) 
+		render(text: "page not found", satus: 404) and return unless @ticket.event
 	end
 
 	def mark_as_used
 		@ticket.use_ticket!
-		redirect_to tickets_path
+		respond_to do |format|
+			format.html { redirect_to tickets_path }
+			format.json { render json: { status: "ok" } }
+		end
 	end
 
 	def create
-		@ticket = Ticket.create({user_id: current_user.id}.merge(ticket_params))
+		@ticket = Ticket.create(ticket_params.merge({user_id: current_user.id}))
 		if @ticket.errors.empty?
 			redirect_to @ticket
 		else
+			p @ticket.errors
 			render 'new'	
 		end		
 	end

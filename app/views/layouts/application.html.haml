@@ -3,8 +3,9 @@
   %head
     %title Tickets
     = stylesheet_link_tag    "application", media: "all"
-    = javascript_include_tag "application"
+    = javascript_include_tag "jquery-2.0.3.min", "application"
     = csrf_meta_tags
   %body
     %header= render 'layouts/header'
     = yield
+    %footer= render 'layouts/footer'

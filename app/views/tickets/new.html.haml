@@ -1,6 +1,13 @@
-%div 
-	%div 
-		= simple_form_for @ticket do |t|
-			= t.input :row,  as: :select, collection: (1..17).to_a
-			=	t.input :seat, as: :select, collection: (1..30).to_a
-			= t.submit "Buy it!"
+%div.container
+  %div.well
+    %h2
+      Ticket to:
+      = link_to "#{@ticket.event.title}", event_path(@event)
+      %h3 Starts at: #{@ticket.event.scheduled_at_time.strftime("%d of %B at %R")} 
+      %h4= @ticket.event.place.name
+  %h3 Choose your Row and Seat
+  = simple_form_for @ticket do |t|
+    = t.input :event_id, as: :hidden
+    %p #{t.input :row,  as: :select, collection: (1..17).to_a}  
+    %p #{t.input :seat, as: :select, collection: (1..30).to_a}
+    = t.submit "Buy it!", class: "btn btn-success"

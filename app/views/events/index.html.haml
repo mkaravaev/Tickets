@@ -3,16 +3,16 @@
     - @events.each do |event|
       %div.col-sm-6.col-md-4
         %div.thumbnail
-          %img{alt: "...", "data-src" => "holder.js/300x200"}/
+          = image_tag 'http://cdn.pastemagazine.com/www/system/images/photo_albums/charis-tsevis-designs/medium/photo_29872_0.jpg?1295969217'
           %div.caption
             %h3= link_to event.title, event_path(event.id)
             %p= event.description
+            %h4 Starting at: #{event.scheduled_at_time.strftime("%d-%B at %R")}
             - if current_user && current_user.admin
               %p
                 = link_to 'Edit', edit_event_path(event.id)
-                = link_to 'Delete', event_path(event.id), method: :delete, data: { confirm:"Are you shure?" }
-            - else
-              %p= link_to 'Buy ticket to event', new_ticket_path(event_id: event.id) 
+                = link_to 'Delete', event_path(event.id), method: :delete, data: { confirm: "Are you shure?" }
+            = link_to 'Buy ticket!', new_ticket_path(event_id: event.id), class: "btn btn-success"
   - if current_user && current_user.admin       
     %p= link_to '+ Add event', new_event_path
 

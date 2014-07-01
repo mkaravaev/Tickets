@@ -1,7 +1,7 @@
 %div.container
 	%p= @event.title 
 	%p= @event.description
-	%p starts at #{@event.scheduled_at_time} on #{ @event.scheduled_at_date}
+	%p starts at #{@event.scheduled_at_time.strftime("%d %b, %Y %I:%M %p")}
 	-if current_user && current_user.admin
 		%p Tickets bought: #{@event.tickets.count}
 	-else

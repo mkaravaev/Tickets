@@ -12,7 +12,7 @@ gem 'time_splitter'
 # Use SCSS for stylesheets
 
 gem 'sass-rails', '>= 3.2' # sass-rails needs to be higher than 3.2
-gem 'bootstrap-sass', '~> 3.0.1.0.rc'
+gem 'bootstrap-sass', '~> 3.1.1'
 gem 'haml-rails'
 
 # Use Uglifier as compressor for JavaScript assets
@@ -22,7 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+# gem 'jquery-rails', '~> 3.0.4'
 
 group :test do
 	gem 'rspec-rails'
